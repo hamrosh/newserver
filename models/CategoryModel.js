@@ -7,11 +7,11 @@ const CategorySchema = new Schema({
     required: [true, 'Category Field is required'],
     unique: true
   },
-  createdate: {
+  createDate: {
     type: Date,
     default: Date.now
   },
-  createdby: {
+  createdBy: {
     type: String,
     default: 'admin'
   }

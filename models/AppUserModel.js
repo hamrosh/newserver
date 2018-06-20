@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 const Schema = mongoose.Schema;
 
 const AppUserSchema = new Schema({
-  fullname: {
+  fullName: {
     type: String,
     required: [true, 'Full Name Field is required']
   },
@@ -19,7 +19,7 @@ const AppUserSchema = new Schema({
     required: [true, 'password Field is required']
   },
 
-  mobilenumber: {
+  mobileNumber: {
     type: String,
     required: [true, 'mobilenumber Field is required']
   },
@@ -27,11 +27,11 @@ const AppUserSchema = new Schema({
     type: Boolean,
     default: false
   },
-  createddate: {
+  createdDate: {
     type: Date,
     default: Date.now
   },
-  activationcode: {
+  activationCode: {
     type: String
   }
 });

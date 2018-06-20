@@ -1,4 +1,4 @@
-import AppUser from '../models/AppUser';
+import AppUser from '../models/AppUserModel';
 import LocalStrategy from 'passport-local';
 
 const strategy = new LocalStrategy(
@@ -7,7 +7,6 @@ const strategy = new LocalStrategy(
   },
   function(emailid, password, done) {
     AppUser.findOne({ emailid: emailid }, (err, user) => {
-      console.log(user);
       if (err) {
         return done(err);
       }

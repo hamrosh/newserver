@@ -22,7 +22,7 @@ const passport = require('../passport');
 
 router.get('/', (req, res, next) => {
   console.log('===== user!!======');
-  console.log(req.user);
+
   if (req.user) {
     res.json({ user: req.user });
   } else {
@@ -55,7 +55,6 @@ router.post('/login', function(req, res, next) {
 });
 
 router.post('/logout', (req, res) => {
-  console.log(req.user);
   if (req.user) {
     req.logout();
     res.send({ msg: 'logging out' });

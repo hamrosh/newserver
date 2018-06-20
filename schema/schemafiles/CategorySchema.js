@@ -1,4 +1,4 @@
-import Category from '../../models/Category';
+import Category from '../../models/CategoryModel';
 import { gql } from 'apollo-server';
 import bcrypt from 'bcryptjs';
 // Type Defs
@@ -7,7 +7,7 @@ export const typeDef = gql`
   type Category {
     id: ID
     category: String
-    createdby: String
+    createdBy: String
   }
 
   type ReturnMessage {
@@ -25,7 +25,7 @@ export const typeDef = gql`
 
   input CategoryInput {
     category: String
-    createdby: String
+    createdBy: String
   }
 `;
 

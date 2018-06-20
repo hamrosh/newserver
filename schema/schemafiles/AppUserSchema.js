@@ -1,4 +1,4 @@
-import AppUser from '../../models/AppUser';
+import AppUser from '../../models/AppUserModel';
 import { gql } from 'apollo-server';
 import 'babel-polyfill';
 // Type Defs
@@ -6,11 +6,11 @@ import 'babel-polyfill';
 export const typeDef = gql`
   type AppUser {
     id: ID
-    fullname: String
+    fullName: String
     emailid: String
     password: String
-    mobilenumber: String
-    createddate: String
+    mobileNumber: String
+    createdDate: String
   }
 
   extend type Query {
@@ -26,7 +26,7 @@ export const typeDef = gql`
     fullname: String
     emailid: String
     password: String
-    mobilenumber: String
+    mobileNumber: String
   }
 `;
 

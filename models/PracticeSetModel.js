@@ -3,7 +3,11 @@ import bcrypt from 'bcryptjs';
 const Schema = mongoose.Schema;
 
 const PracticeSetSchema = new Schema({
-  description: String,
+  description: {
+    type: String,
+    required: true,
+    unique: true
+  },
   questions: [String],
   authorName: String,
   sectionID: String,
@@ -16,6 +20,11 @@ const PracticeSetSchema = new Schema({
   createdDate: {
     type: Date,
     default: Date.now
+  },
+  routeURL: {
+    type: String,
+    required: true,
+    unique: true
   }
 });
 

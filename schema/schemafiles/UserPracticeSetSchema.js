@@ -52,7 +52,7 @@ export const resolvers = {
       });
     },
     setInfo: (UserPracticeSet, {}, context) => {
-      return PracticeSet.findById(UserPracticeSet.PracticeSetID, function(
+      return PracticeSet.findById(UserPracticeSet.practiceSetID, function(
         err,
         practiceset
       ) {

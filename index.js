@@ -48,7 +48,10 @@ app.use(
     secret: 'fraggle-rock', //pick a random string to make the hash that is generated secure
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
     resave: false, //required
-    saveUninitialized: false //required
+    saveUninitialized: false, //required
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 365
+    }
   })
 );
 
@@ -58,7 +61,7 @@ app.use(passport.session()); // calls the deserializeUser
 
 // Routes
 app.use('/user', user);
-
+app.use('/images', express.static('images'));
 // graphql
 app.use(
   '/graphql',
@@ -67,7 +70,7 @@ app.use(
     return {
       schema: schema,
       context: {
-        userid: null
+        user: req.user
       }
       // other options here
     };

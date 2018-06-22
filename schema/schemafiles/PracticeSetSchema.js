@@ -18,10 +18,16 @@ export const typeDef = gql`
     purcahseCount: Float
     isFree: Boolean
     createdBy: String
+    routeURL: String
   }
 
   extend type Query {
-    getPracticeSets(sectionID: String, subSectionID: String): [PracticeSet]
+    getPracticeSets(
+      id: String
+      sectionID: String
+      subSectionID: String
+    ): [PracticeSet]
+    practiceSetInfo(routeURL: String): PracticeSet
   }
 
   extend type Mutation {
@@ -31,7 +37,7 @@ export const typeDef = gql`
   input InputPracticeSet {
     description: String
     questions: [String]
-    quthorName: String
+    authorName: String
     sectionID: String
     subSectionID: String
     numberOfQuestion: Float
@@ -39,17 +45,28 @@ export const typeDef = gql`
     purchaseCount: Float
     isFree: Boolean
     createdBy: String
+    routeURL: String
   }
 `;
 
 //Writing the resolvers for the queries in the schema file for queries
 export const resolvers = {
   Query: {
-    getPracticeSets: (root, { sectionID, subSectionID }, context) => {
+    getPracticeSets: (root, { id, sectionID, subSectionID }, context) => {
+      console.log('test', context.user);
       let filter = {};
+      if (id) filter._id = id;
       if (sectionID) filter.sectionID = sectionID;
       if (subSectionID) filter.subSectionID = subSectionID;
-      return PracticeSet.find(filter);
+      return PracticeSet.find(filter)
+        .sort({ createdDate: 'desc' })
+        .limit(10)
+        .exec();
+    },
+    practiceSetInfo: (root, { routeURL }, context) => {
+      let filter = {};
+      if (routeURL) filter.routeURL = routeURL;
+      return PracticeSet.findOne(filter);
     }
   },
 
@@ -57,7 +74,7 @@ export const resolvers = {
     allQuestions: (PracticeSet, {}, context) => {
       return Question.find(
         {
-          _id: { $in: PracticeSet.Questions }
+          _id: { $in: PracticeSet.questions }
         },
         function(err, docs) {
           console.log(docs);

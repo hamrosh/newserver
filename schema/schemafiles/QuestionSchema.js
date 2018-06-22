@@ -55,7 +55,7 @@ export const typeDef = gql`
 
   input InputContent {
     content: String
-    contenType: String
+    contentType: String
   }
 
   input InputOption {

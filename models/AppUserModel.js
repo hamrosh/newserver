@@ -53,7 +53,7 @@ AppUserSchema.pre('save', function(next) {
   } else {
     console.log('models/user.js hashPassword in pre save');
     this.password = this.hashPassword(this.password);
-    this.activationcode = this.hashPassword(this.id);
+    this.activationCode = this.hashPassword(this.id);
     next();
   }
 });

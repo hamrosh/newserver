@@ -46,7 +46,7 @@ router.post('/login', function(req, res, next) {
       var userInfo = {
         id: user.id,
         emailid: user.emailid,
-        fullname: user.fullname
+        fullName: user.fullName
       };
 
       return res.send(userInfo);

@@ -3,8 +3,8 @@ import bcrypt from 'bcryptjs';
 const Schema = mongoose.Schema;
 
 const UserPracticeSetSchema = new Schema({
-  AppUserID: String,
-  PracticeSetID: String,
+  appUserID: String,
+  practiceSetID: String,
   active: Boolean,
   createdBy: String,
   purchaseDate: {
